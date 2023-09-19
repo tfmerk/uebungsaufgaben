@@ -4,6 +4,19 @@ Es soll eine Funktion geschrieben werden, welche eine Liste mit Ganzzahlen (inte
 
 # Lösungsansatz (PHP)
 
+
+Die aufgerufene Methode `getIndicesBySum` bekommt die Liste/Array sowie die Ganzzahl übergeben.
+In der Funktion gibt es zwei Schleifen, die jede Zahl mit jeder Zahl aufsummiert ohne dies zu doppeln.
+
+```
+1 + 2,  1 + 8,  1 + 12, 1 + 15  // Durchlauf 1
+2 + 8,  2 + 12, 2 + 15          // Durchlauf 2
+8 + 12, 8 + 15                  // Durchlauf 3 -> Treffer!
+12 + 15                         // Durchlauf 4 -> wird nicht mehr durchlaufen
+```
+
+Sollte der gesuchte Wert aus `$target` gefunden werden  (8 + 12 = 20), so werden die beiden Indizes als neues Array zurückgegeben. Der Wert im dem dritten Schleifendurchlauf gefunden.
+
 ```PHP
 <?php
 
@@ -54,15 +67,3 @@ function getIndicesBySum(array $list, int $target): array
 	return $result;
 }
 ```
-
-Die aufgerufene Methode `getIndicesBySum` bekommt die Liste/Array sowie die Ganzzahl übergeben.
-In der Funktion gibt es zwei Schleifen, die jede Zahl mit jeder Zahl aufsummiert ohne dies zu doppeln.
-
-```
-1 + 2,  1 + 8,  1 + 12, 1 + 15  // Durchlauf 1
-2 + 8,  2 + 12, 2 + 15          // Durchlauf 2
-8 + 12, 8 + 15                  // Durchlauf 3 -> Treffer!
-12 + 15                         // Durchlauf 4 -> wird nicht mehr durchlaufen
-```
-
-Sollte der gesuchte Wert aus `$target` gefunden werden  (8 + 12 = 20), so werden die beiden Indizes als neues Array zurückgegeben. Der Wert im dem dritten Schleifendurchlauf gefunden.
